@@ -5,6 +5,10 @@
 :root {
   --gold: #d4af37;
   --dark-gold: #b8941e;
+  --bg: #fafaf9;
+  --text: #171717;
+  --muted: #6b6b6b;
+  --max-width: 1200px;
 }
 
 * {
@@ -15,8 +19,8 @@
 
 body {
   font-family: Georgia, 'Times New Roman', serif;
-  color: #171717;
-  background-color: #fafaf9;
+  color: var(--text);
+  background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,6 +33,30 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 400;
   letter-spacing: -0.02em;
+}
+
+/* Layout container */
+.container {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Typography scale */
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+p, li {
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 /* Animations */
