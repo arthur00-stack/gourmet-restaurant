@@ -1,26 +1,194 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --gold: 212, 175, 55;
+    --dark-gold: 184, 148, 30;
+    --foreground-rgb: 23, 23, 23;
+    --background-rgb: 250, 250, 249;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply text-neutral-900;
+    background: rgb(var(--background-rgb));
+    font-family: Georgia, 'Times New Roman', serif;
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Animations élégantes */
+  @keyframes elegant-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-elegant-fade-in {
+    animation: elegant-fade-in 1s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Bordure décorative dorée */
+  .elegant-border {
+    position: relative;
+  }
+
+  .elegant-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgb(var(--gold)), transparent);
+  }
+
+  .elegant-border-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgb(var(--gold)), transparent);
+  }
+
+  /* Boutons dorés */
+  .btn-gold {
+    @apply bg-gold text-neutral-900 px-10 py-4 font-semibold tracking-wider hover:bg-darkGold transition-all transform hover:scale-105;
+  }
+
+  .btn-gold-outline {
+    @apply border-2 border-gold text-gold px-10 py-4 font-semibold tracking-wider hover:bg-gold hover:text-neutral-900 transition-all;
+  }
+
+  /* Lignes dorées décoratives */
+  .gold-line {
+    @apply h-px bg-gradient-to-r from-transparent via-gold to-transparent;
+  }
+
+  .gold-line-vertical {
+    @apply w-px bg-gradient-to-b from-transparent via-gold to-transparent;
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply relative;
+  }
+
+  .section-divider::after {
+    content: '✦';
+    @apply absolute left-1/2 transform -translate-x-1/2 text-gold text-2xl;
+  }
+
+  /* Effet de texte doré */
+  .gold-text-shadow {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  }
+
+  /* Overlay élégant */
+  .elegant-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60;
+  }
+
+  /* Carte élégante */
+  .elegant-card {
+    @apply bg-white rounded-sm shadow-2xl border border-neutral-100 hover:shadow-3xl transition-all duration-500;
+  }
+
+  /* Menu item style */
+  .menu-item {
+    @apply relative pb-6 border-b border-neutral-800/20 hover:border-gold/40 transition-all duration-300;
+  }
+
+  /* Input élégant */
+  .elegant-input {
+    @apply w-full px-4 py-3 bg-neutral-900 border border-neutral-700 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition text-white rounded-sm;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Tracking spécial */
+  .tracking-luxury {
+    letter-spacing: 0.3em;
+  }
+
+  /* Transition douce */
+  .transition-luxury {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Ombre dorée */
+  .shadow-gold {
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+  }
+
+  .shadow-gold-lg {
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+  }
+
+  /* Gradient doré */
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #d4af37 0%, #b8941e 100%);
+  }
+
+  /* Effet premium */
+  .premium-border {
+    @apply border border-gold/20 bg-gradient-to-br from-neutral-900 to-black;
+  }
 }
